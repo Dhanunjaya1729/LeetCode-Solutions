@@ -4,8 +4,11 @@ private:
         long long sum = 0;
         for(auto i: nums){
             sum += (i + mid - 1)/mid;
+            if(sum > limit){
+                return false;
+            }
         }
-        return sum <= limit;
+        return true;
     }
 public:
     int smallestDivisor(vector<int>& nums, int threshold) {
