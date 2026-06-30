@@ -6,9 +6,8 @@ public:
 
         while(low <= high){
             int mid = low + (high - low) / 2;
-            int missing = arr[mid] - mid - 1;
 
-            if(k <= missing) high = mid - 1;
+            if(k <= arr[mid] - mid - 1) high = mid - 1;
             else low = mid + 1;
         }
 
