@@ -3,11 +3,11 @@ using namespace std;
 class Solution {
 public:
     int romanToInt(string s) {
-        int total = 0;
-        int prev_val = 0;
+        auto total = 0;
+        auto prev_val = 0;
 
-        for(char c: s|views::reverse){
-            int curr_val = 0;
+        for(auto c: s|views::reverse){
+            auto curr_val = 0;
 
             switch(c){
                 case 'I': curr_val = 1; break;
