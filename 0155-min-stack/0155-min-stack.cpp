@@ -4,11 +4,12 @@ private:
 public:
     MinStack() {}
     
-    void push(int val) {
-        if (!st.empty()) {
-            st.push({val, min(val, st.top().second)});
-        } else {
-            st.push({val, val});
+    void push(int value) {
+        if(st.empty()){
+            st.push({value, value});
+        }
+        else{
+            st.push({value, min(value, st.top().second)});
         }
     }
     
