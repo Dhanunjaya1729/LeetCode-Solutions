@@ -1,0 +1,45 @@
+class MinStack {
+private:
+    stack<pair<int, int>> st;
+public:
+    MinStack() {}
+    
+    void push(int value) {
+        if(st.empty()){
+            st.push({value, value});
+        }
+        else{
+            st.push({value, min(value, st.top().second)});
+        }
+    }
+    
+    void pop() {
+        if(st.empty()){
+            throw std::underflow_error("Stack is Empty, cannot pop.");
+        }
+        st.pop();
+    }
+    
+    int top() {
+        if(st.empty()){
+            throw std::underflow_error("Stack is Empty.");
+        }
+        return st.top().first;
+    }
+    
+    int getMin() {
+        if(st.empty()){
+            throw std::underflow_error("Stack is Empty.");
+        }
+        return st.top().second;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(value);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
