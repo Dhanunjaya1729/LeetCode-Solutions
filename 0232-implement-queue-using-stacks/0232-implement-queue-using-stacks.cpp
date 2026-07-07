@@ -1,38 +1,47 @@
 class MyQueue {
-    stack<int> st1, st2;
+private:
+    stack<int> input, output;
 public:
     MyQueue() {}
     
     void push(int x) {
-        while(!st1.empty()){
-            st2.push(st1.top());
-            st1.pop();
-        }
-        st1.push(x);
-        while(!st2.empty()){
-            st1.push(st2.top());
-            st2.pop();
-        }
+        input.push(x);
     }
     
     int pop() {
-        if(st1.empty()){
+        if(output.empty()){
+            while(!input.empty()){
+                output.push(input.top());
+                input.pop();
+            }
+        }
+
+        if(output.empty()){
             throw std::underflow_error("Queue is empty, cannot pop.");
         }
-        int x = st1.top();
-        st1.pop();
+
+        int x = output.top();
+        output.pop();
         return x;
     }
     
     int peek() {
-        if(st1.empty()){
-            throw std::underflow_error("Queue is empty, cannot pop.");
+        if(output.empty()){
+            while(!input.empty()){
+                output.push(input.top());
+                input.pop();
+            }
         }
-        return st1.top();
+
+        if(output.empty()){
+            throw std::underflow_error("Queue is empty, cannot peek.");
+        }
+
+        return output.top();
     }
     
     bool empty() {
-        return st1.empty();
+        return input.empty() && output.empty();
     }
 };
 
