@@ -14,23 +14,14 @@ public:
     }
     
     void pop() {
-        if(st.empty()){
-            throw std::underflow_error("Stack is Empty, cannot pop.");
-        }
         st.pop();
     }
     
     int top() {
-        if(st.empty()){
-            throw std::underflow_error("Stack is Empty.");
-        }
         return st.top().first;
     }
     
     int getMin() {
-        if(st.empty()){
-            throw std::underflow_error("Stack is Empty.");
-        }
         return st.top().second;
     }
 };
