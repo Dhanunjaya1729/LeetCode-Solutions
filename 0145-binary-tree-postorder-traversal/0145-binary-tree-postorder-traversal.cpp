@@ -10,17 +10,26 @@
  * };
  */
 class Solution {
-private:
-    void func(TreeNode* node, vector<int>& ans){
-        if(node == nullptr) return;
-        func(node->left, ans);
-        func(node->right, ans);
-        ans.push_back(node->val);
-    }
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
-        func(root, ans);
+        if(root == nullptr) return ans;
+
+        stack<TreeNode*> st;
+        st.push(root);
+
+        while(!st.empty()){
+            TreeNode* node = st.top();
+            st.pop();
+            ans.push_back(node->val);
+            if(node->left != nullptr){
+                st.push(node->left);
+            }
+            if(node->right != nullptr){
+                st.push(node->right);
+            }
+        }
+        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
